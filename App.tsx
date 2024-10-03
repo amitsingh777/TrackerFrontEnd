@@ -6,24 +6,44 @@
  */
 
 import React from 'react';
-
-import {SafeAreaView} from 'react-native';
-
-import Home from './src/page/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Home from './src/page/Home';
 
-const Stack = createNativeStackNavigator();
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Gym from './src/page/Fitness/Gym';
+
+const HomeStack = createNativeStackNavigator();
+const HomeStackScreen = () => {
+  return (
+    <HomeStack.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerShown: false}}>
+      <HomeStack.Screen name="Home" component={Home} />
+    </HomeStack.Navigator>
+  );
+};
+const FitnessStack = createNativeStackNavigator();
+const FitnessStackScreen = () => {
+  return (
+    <FitnessStack.Navigator
+      initialRouteName="Gym"
+      screenOptions={{headerShown: false}}>
+      <FitnessStack.Screen name="Gym" component={Gym} />
+    </FitnessStack.Navigator>
+  );
+};
+
+const Tab = createBottomTabNavigator();
 
 function App(): React.JSX.Element {
   return (
-    // <SafeAreaView>
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Fitness" component={FitnessStackScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
-    // </SafeAreaView>
   );
 }
 
