@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Text, Button, SafeAreaView} from 'react-native';
 
 import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
 import {RootStackParamList} from '../types';
@@ -11,10 +11,12 @@ const Home = ({navigation}: RootNavigationProps) => {
     navigation.navigate('Login');
   };
   return (
-    <View style={{flex: 1}}>
-      <Text>This is all about my life!</Text>
-      <Button title="Login page" onPress={onLoginPress} />
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1}}>
+        <Text>This is all about my life!</Text>
+        <Button title="Login page" onPress={onLoginPress} />
+      </View>
+    </SafeAreaView>
   );
   // return (
   //   <View style={styles.container}>

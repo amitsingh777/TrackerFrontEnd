@@ -1,8 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 
 const Login = () => {
-  return <Text>Login page</Text>;
+  return (
+    <SafeAreaView>
+      <Text>Login page</Text>
+    </SafeAreaView>
+  );
 };
 
 export default Login;
