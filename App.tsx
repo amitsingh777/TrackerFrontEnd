@@ -16,9 +16,7 @@ import Gym from './src/page/Fitness/Gym';
 const HomeStack = createNativeStackNavigator();
 const HomeStackScreen = () => {
   return (
-    <HomeStack.Navigator
-      initialRouteName="Home"
-      screenOptions={{headerShown: false}}>
+    <HomeStack.Navigator initialRouteName="Home">
       <HomeStack.Screen name="Home" component={Home} />
     </HomeStack.Navigator>
   );
@@ -26,9 +24,7 @@ const HomeStackScreen = () => {
 const FitnessStack = createNativeStackNavigator();
 const FitnessStackScreen = () => {
   return (
-    <FitnessStack.Navigator
-      initialRouteName="Gym"
-      screenOptions={{headerShown: false}}>
+    <FitnessStack.Navigator initialRouteName="Gym">
       <FitnessStack.Screen name="Gym" component={Gym} />
     </FitnessStack.Navigator>
   );
@@ -39,7 +35,7 @@ const Tab = createBottomTabNavigator();
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{headerShown: false}}>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Fitness" component={FitnessStackScreen} />
       </Tab.Navigator>
