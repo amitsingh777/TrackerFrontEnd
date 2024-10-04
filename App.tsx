@@ -12,8 +12,11 @@ import Home from './src/page/Home';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Gym from './src/page/Fitness/Gym';
+import Login from './src/page/Auth/Login';
+import Signup from './src/page/Auth/Signup';
+import {RootStackParamList} from './src/types';
 
-const HomeStack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator<RootStackParamList>();
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator initialRouteName="Home">
@@ -21,7 +24,7 @@ const HomeStackScreen = () => {
     </HomeStack.Navigator>
   );
 };
-const FitnessStack = createNativeStackNavigator();
+const FitnessStack = createNativeStackNavigator<RootStackParamList>();
 const FitnessStackScreen = () => {
   return (
     <FitnessStack.Navigator initialRouteName="Gym">
@@ -31,14 +34,23 @@ const FitnessStackScreen = () => {
 };
 
 const Tab = createBottomTabNavigator();
-
+const Root = createNativeStackNavigator<RootStackParamList>();
+const TabScreens = () => {
+  return (
+    <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Screen name="HomeTab" component={HomeStackScreen} />
+      <Tab.Screen name="FitnessTab" component={FitnessStackScreen} />
+    </Tab.Navigator>
+  );
+};
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Fitness" component={FitnessStackScreen} />
-      </Tab.Navigator>
+      <Root.Navigator screenOptions={{headerShown: false}}>
+        <Root.Screen name="Root" component={TabScreens} />
+        <Root.Screen name="Login" component={Login} />
+        <Root.Screen name="Signup" component={Signup} />
+      </Root.Navigator>
     </NavigationContainer>
   );
 }

@@ -1,13 +1,19 @@
 import React from 'react';
 
-import {View, StyleSheet, Text, Dimensions} from 'react-native';
+import {View, StyleSheet, Text, Button} from 'react-native';
 
-import {LineChart} from 'react-native-chart-kit';
+import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
+import {RootStackParamList} from '../types';
+type RootNavigationProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const Home = () => {
+const Home = ({navigation}: RootNavigationProps) => {
+  const onLoginPress = () => {
+    navigation.navigate('Login');
+  };
   return (
     <View style={{flex: 1}}>
       <Text>This is all about my life!</Text>
+      <Button title="Login page" onPress={onLoginPress} />
     </View>
   );
   // return (
