@@ -15,6 +15,14 @@ import Gym from './src/page/Fitness/Gym';
 import Login from './src/page/Auth/Login';
 import Signup from './src/page/Auth/Signup';
 import {RootStackParamList} from './src/types';
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://ca08f530bfbd84d39b9a588cabd9e5b5@o4508065448853504.ingest.de.sentry.io/4508065452458064',
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // enableSpotlight: __DEV__,
+});
 
 const HomeStack = createNativeStackNavigator<RootStackParamList>();
 const HomeStackScreen = () => {

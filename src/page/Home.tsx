@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {View, StyleSheet, Text, Button, SafeAreaView} from 'react-native';
+import * as Sentry from '@sentry/react-native';
 
 import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
 import {RootStackParamList} from '../types';
@@ -15,6 +16,12 @@ const Home = ({navigation}: RootNavigationProps) => {
       <View style={{flex: 1}}>
         <Text>This is all about my life!</Text>
         <Button title="Login page" onPress={onLoginPress} />
+        <Button
+          title="Try!"
+          onPress={() => {
+            Sentry.captureException(new Error('First error'));
+          }}
+        />
       </View>
     </SafeAreaView>
   );
