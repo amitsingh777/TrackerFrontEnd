@@ -16,12 +16,6 @@ const Home = ({navigation}: RootNavigationProps) => {
       <View style={{flex: 1}}>
         <Text>This is all about my life!</Text>
         <Button title="Login page" onPress={onLoginPress} />
-        <Button
-          title="Try!"
-          onPress={() => {
-            Sentry.captureException(new Error('First error'));
-          }}
-        />
       </View>
     </SafeAreaView>
   );
