@@ -5,7 +5,10 @@ import * as Sentry from '@sentry/react-native';
 
 import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
 import {RootStackParamList} from '../types';
-type RootNavigationProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+export type RootNavigationProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Home'
+>;
 
 const Home = ({navigation}: RootNavigationProps) => {
   const onLoginPress = () => {
