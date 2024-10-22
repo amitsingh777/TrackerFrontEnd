@@ -14,11 +14,15 @@ const Home = ({navigation}: RootNavigationProps) => {
   const onLoginPress = () => {
     navigation.navigate('Login');
   };
+  const onSignup = () => {
+    navigation.navigate('Signup');
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
         <Text>This is all about my life!</Text>
         <Button title="Login page" onPress={onLoginPress} />
+        <Button title="Signup page" onPress={onSignup} />
       </View>
     </SafeAreaView>
   );
