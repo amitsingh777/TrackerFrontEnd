@@ -26,11 +26,16 @@ const Signup = () => {
       }
     }
   };
+  const onNameClear = () => {
+    setName('');
+  };
   return (
     <View style={style.container}>
       <CustomTextInput
         placeholder="Enter your name please!"
         onChangeText={onNameInputChange}
+        onPress={onNameClear}
+        value={name}
       />
       <TextInput
         placeholder="Enter your password please!"

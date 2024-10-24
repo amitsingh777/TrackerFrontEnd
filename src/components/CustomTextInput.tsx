@@ -1,25 +1,38 @@
-import {StyleSheet, TextInput, View} from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 import {TextInputProps} from 'react-native/Libraries/Components/TextInput/TextInput';
-//circle-with-cross
-import Icon from 'react-native-vector-icons/Entypo';
-import FontIcon from 'react-native-vector-icons/FontAwesome';
 
-const CustomTextInput = (props: TextInputProps) => {
+import Icon from 'react-native-vector-icons/Entypo';
+import {IconProps} from 'react-native-vector-icons/Icon';
+
+type Props = TextInputProps & Omit<IconProps, 'name'> & PressableProps;
+
+const CustomTextInput = (props: Props) => {
   return (
     <>
       <View style={inputStyle.container}>
         <TextInput
           {...props}
           style={inputStyle.input}
-          placeholderTextColor="#ffffff80"
-          inlineImageLeft="d"
+          placeholderTextColor="#ffffff95"
         />
-        <Icon
-          name="circle-with-cross"
-          size={15}
-          color="black"
-          style={inputStyle.icon}
-        />
+
+        <Pressable
+          android_ripple={{color: '#00000040', radius: 12, foreground: true}}
+          onPress={props.onPress}
+          style={inputStyle.iconContainer}>
+          <Icon
+            name="circle-with-cross"
+            size={15}
+            color="black"
+            style={[{borderRadius: 100}]}
+          />
+        </Pressable>
       </View>
     </>
   );
@@ -27,11 +40,10 @@ const CustomTextInput = (props: TextInputProps) => {
 
 const inputStyle = StyleSheet.create({
   input: {
-    backgroundColor: '#00000070',
+    backgroundColor: '#000000',
     opacity: 0.4,
     borderRadius: 6,
-    // paddingHorizontal: 6,
-    paddingVertical: 3,
+    paddingVertical: 2,
     paddingRight: 26,
     paddingLeft: 6,
     color: 'white',
@@ -41,8 +53,11 @@ const inputStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  icon: {
-    marginLeft: -23,
+  iconContainer: {
+    borderRadius: 40,
+    padding: 10,
+    backgroundColor: 'transparent',
+    marginLeft: -30,
   },
 });
 
