@@ -1,4 +1,5 @@
 import {
+  GestureResponderEvent,
   Pressable,
   PressableProps,
   StyleSheet,
@@ -10,7 +11,11 @@ import {TextInputProps} from 'react-native/Libraries/Components/TextInput/TextIn
 import Icon from 'react-native-vector-icons/Entypo';
 import {IconProps} from 'react-native-vector-icons/Icon';
 
-type Props = TextInputProps & Omit<IconProps, 'name'> & PressableProps;
+type Props = TextInputProps &
+  Omit<IconProps, 'name'> &
+  PressableProps & {
+    onClear?: (event: GestureResponderEvent) => void;
+  };
 
 const CustomTextInput = (props: Props) => {
   return (
