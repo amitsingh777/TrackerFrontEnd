@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, StyleSheet, TextInput, View} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import {signup} from '../../apis/auth';
 import CustomTextInput from '../../components/CustomTextInput';
+import {AxiosError} from 'axios';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -20,21 +21,31 @@ const Signup = () => {
 
   const onSignupPress = async () => {
     if (name && mail && password) {
-      const token = await signup({userName: name, mail, password});
-      if (token) {
-        await Keychain.setGenericPassword('amit', `${token}`);
+      try {
+        const data = await signup({
+          userName: name,
+          mail,
+          password,
+        });
+        if (data && data.token) {
+          await Keychain.setGenericPassword('amit', `${data.token}`);
+        }
+      } catch (e: unknown) {
+        const ex = e as AxiosError;
+        console.log(ex.code, ex.cause, ex.response, ex.status, ex.name);
       }
     }
   };
   const onNameClear = () => {
     setName('');
   };
+
   return (
     <View style={style.container}>
       <CustomTextInput
         placeholder="Enter your name please!"
         onChangeText={onNameInputChange}
-        onPress={onNameClear}
+        // onPress={onNameClear}
         value={name}
       />
       <TextInput
@@ -46,13 +57,6 @@ const Signup = () => {
         onChangeText={onMailInputChange}
       />
       <Button title="Sign me up!" onPress={onSignupPress} />
-      <Button
-        title="get credentials from me"
-        onPress={async () => {
-          const creds = await Keychain.getGenericPassword();
-          console.log(creds);
-        }}
-      />
     </View>
   );
 };
